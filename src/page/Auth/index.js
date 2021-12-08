@@ -5,9 +5,9 @@ import {
   Image,
   View,
   TextInput,
+  StyleSheet,
   TouchableOpacity,
 } from "react-native";
-import { StyleSheet } from "react-native";
 import colors from "../../utils/color";
 // import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import assets from "../../../Assets";
@@ -16,6 +16,7 @@ import Circle from "../../components/Circle";
 import AsyncStorageManager, {
   AUTO_LOGIN,
 } from "../../utils/AsyncStorageManager";
+import CommonButton from "../../components/Button/CommonButton";
 
 const Auth = () => {
   //   const inset = useSafeAreaInsets();
@@ -49,11 +50,15 @@ const Auth = () => {
       });
   };
 
+  const handleSubmit = () => {
+    return;
+  };
+
   return (
     <ScrollView style={style.loginWrapper}>
       <View
         style={{ flex: 1 }}
-        // eslint-disable-next-line react-native/no-inline-styles
+        // eslint-disable-next-line react-native/no-inline-style
         contentContainerStyle={{
           flexGrow: 1,
           // paddingBottom: inset.bottom,
@@ -61,7 +66,7 @@ const Auth = () => {
       >
         <Image source={assets.logo_login} style={style.logo} />
         <View
-          // eslint-disable-next-line react-native/no-inline-styles
+          // eslint-disable-next-line react-native/no-inline-style
           style={{
             borderColor: colors.VERY_LIGHT_PINK,
             borderWidth: 0.5,
@@ -96,21 +101,94 @@ const Auth = () => {
           />
           <Text style={style.checkBoxText}>로그인유지</Text>
         </TouchableOpacity>
+        <CommonButton backgroundColor={colors.WARM_PINK} onPress={handleSubmit}>
+          로그인
+        </CommonButton>
+        <View style={style.helpWrapper}>
+          <TouchableOpacity
+            style={style.helpButton}
+            onPress={() => navigation.navigate("AgreeCheck")}
+          >
+            <Text style={style.helpText}>회원가입</Text>
+          </TouchableOpacity>
+          <View style={style.helpButtonGap} />
+          <TouchableOpacity
+            style={style.helpButton}
+            onPress={() => navigation.navigate("LandingHelpFindID")}
+          >
+            <Text style={[style.helpText]}>아이디찾기</Text>
+          </TouchableOpacity>
+          <View style={style.helpButtonGap} />
+          <TouchableOpacity
+            style={style.helpButton}
+            onPress={() => navigation.navigate("LandingHelpFindPW")}
+          >
+            <Text style={style.helpText}>비밀번호찾기</Text>
+          </TouchableOpacity>
+        </View>
       </View>
       <View style={style.snsWrapper}>
         <View style={style.snsAdvWrapper}>
-          <View style={style.snsGapLine}>
-            <Text style={{ fontWeight: "500", color: colors.BLACK_5 }}>
-              혹은
-              <Text>
-                {`  `}
-                소셜아이디
-              </Text>
-              로 로그인
+          <View style={style.snsGapLine} />
+          <Text style={style.snsAdv}>
+            혹은
+            <Text
+              style={{
+                fontWeight: "500",
+                color: colors.BLACK_5,
+              }}
+            >
+              {" "}
+              소셜아이디
             </Text>
-          </View>
+            로 로그인
+          </Text>
+          <View style={style.snsGapLine} />
         </View>
       </View>
+      {/* <View
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+          paddingVertical: 32,
+          justifyContent: "center",
+        }}
+      >
+        {Platform.OS === "ios" && (
+          <TouchableOpacity
+            style={style.snsSortWrapper}
+            onPress={handleAppleLogin}
+          >
+            <Image source={Assets.apple} />
+            <Text style={style.snsText}>애플</Text>
+          </TouchableOpacity>
+        )}
+        <TouchableOpacity
+          style={[
+            style.snsSortWrapper,
+            { marginLeft: Platform.OS === "ios" ? 17 : 0, marginRight: 17 },
+          ]}
+          onPress={handleFacebookLogin}
+        >
+          <Image source={Assets.facebook} />
+          <Text style={style.snsText}>페이스북</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[style.snsSortWrapper, { marginRight: 17 }]}
+          onPress={handleKakapLogin}
+        >
+          <Image source={Assets.kakao} />
+          <Text style={style.snsText}>카카오</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={style.snsSortWrapper}
+          onPress={() => handleNaverLogin()}
+        >
+          <Image source={Assets.naver} />
+          <Text style={style.snsText}>네이버</Text>
+        </TouchableOpacity>
+      </View> */}
+      {/* <KeyboardSpace /> */}
     </ScrollView>
   );
 };
@@ -145,6 +223,27 @@ const style = StyleSheet.create({
     letterSpacing: -0.7,
     color: colors.BLACK_5,
     marginLeft: 6,
+  },
+  helpWrapper: {
+    marginTop: 20,
+    paddingBottom: 80,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  helpButton: { paddingHorizontal: 10 },
+  helpButtonGap: {
+    width: 1,
+    backgroundColor: colors.VERY_LIGHT_PINK_2,
+    height: 10,
+  },
+  helpText: {
+    fontWeight: "300",
+    textAlign: "center",
+    fontSize: 12,
+    lineHeight: 14,
+    letterSpacing: -0.9,
+    color: colors.BROWNISH_GREY,
   },
   snsWrapper: {
     justifyContent: "center",

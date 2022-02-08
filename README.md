@@ -1,2 +1,4 @@
-# react-native_constructApp
-make construct commerce application
+# react-native_constructApp (Practive Project)
+
+make construct commerce application with React Native
+
